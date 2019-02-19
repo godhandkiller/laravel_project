@@ -26,10 +26,12 @@ class ProjectsController extends Controller{
 
     public function store() {
 
-        Project::create([
-            'title'         => request('title'),
-            'description'   => request('description')
+        $attributes = request()->validate([
+            'title'         => ['required', 'min:3', 'max:100'],
+            'description'   => ['required', 'min:3']
         ]);
+
+        Project::create($attributes);
 
         return redirect()->route('projects.index');
     }
@@ -45,11 +47,12 @@ class ProjectsController extends Controller{
             'description'   => request('description')
         ]);
 
-        return redirect()->route('projects.edit', [ $project->id ]);
+        return redirect()->route('projects.index');
 
     }
 
     public function destroy(Project $project) {
+        dd('entro');
         $project->delete();
 
         return redirect()->route('projects.index');
