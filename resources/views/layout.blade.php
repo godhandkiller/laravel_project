@@ -21,6 +21,14 @@
         color: #ffc107;
     }
 
+    .edit-project-icon{
+        color: #343a40;
+    }
+
+    .row div a .fa-edit{
+        color: #343a40;
+    }
+
 </style>
 <body>
     <header>
