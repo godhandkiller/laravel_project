@@ -28,4 +28,7 @@ Route::resource('projects', 'ProjectsController');
 
 // Route::patch('/tasks/{task}', 'TasksController@update')->name('task.update');
 
-Route::resource('tasks', 'TasksController');
+// Route::resource('tasks', 'TasksController');
+Route::patch('/tasks/{task}', 'TasksController@update')->name('tasks.update');
+
+Route::post('/project/{project}/tasks', 'TasksController@store')->name('tasks.store');

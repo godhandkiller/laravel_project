@@ -16,7 +16,7 @@
         <div class="form-row">
             <div class="col form-group">
                 <label class="form-control-label">Description</label>
-                <textarea class="form-control {{ $errors->has('title')? 'is-invalid' : ''}}" name="description">{{ old('description') }}</textarea>
+                <textarea class="form-control {{ $errors->has('description')? 'is-invalid' : ''}}" name="description">{{ old('description') }}</textarea>
             </div>
         </div>
         <div class="form-row">

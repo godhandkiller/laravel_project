@@ -30,7 +30,7 @@
                                 @csrf
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="customCheck{{$task->id}}"  name="completed" onchange="this.form.submit()" {{ $task->completed? 'checked' : ''}}>
-                                    <label class="custom-control-label {{ $task->completed? 'text-success' : ''}}" for="customCheck{{$task->id}}">{{ $task->body }}</label>
+                                    <label class="custom-control-label {{ $task->completed? 'text-success del-text' : ''}}" for="customCheck{{$task->id}}">{{ $task->body }}</label>
                                 </div>
                             </form>
                             @if ($task->completed)
@@ -41,11 +41,13 @@
                         </li>
                     @endforeach
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <form class="my-auto w-100" method="POST" action="">
+                        <form class="my-auto w-100" method="POST" action="{{ route('tasks.store', [$project->id]) }}">
+                            @csrf
                             <div class="d-flex">
-                                <input class="form-control " type="text" placeholder="Add task">
-                                <a class="ml-1 my-auto" href=""><i class="fas fa-plus-circle fa-2x"></i></a>
+                                <input class="form-control {{ $errors->has('body')? 'is-invalid':''}}" type="text" name="body" placeholder="Add task" autocomplete="off">
+                                <button class="btn btn-primary btn-round my-auto ml-2" type="submit"><i class="fas fa-plus"></i></button>
                             </div>
+
                         </form>
                     </li>
                 </ul>

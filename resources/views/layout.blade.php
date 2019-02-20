@@ -29,6 +29,17 @@
         color: #343a40;
     }
 
+    .btn-round{
+        width: 30px;
+        height: 30px;
+        padding: 6px 0px;
+        border-radius: 15px;
+    }
+
+    .del-text {
+        text-decoration: line-through;
+    }
+
 </style>
 <body>
     <header>
