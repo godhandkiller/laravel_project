@@ -21,4 +21,4 @@ Artisan::command('inspire', function () {
 Artisan::command('nombre', function () {
     //se crea una instancia del controlador
     $this->comment(app(ProjectsController::class)->name());
-})->describe('Display this consoles name');
+})->describe('Cual es mi nombre');
