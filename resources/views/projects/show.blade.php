@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    @if (!$project->tasks->isEmpty())
+    {{-- @if (!$project->tasks->isEmpty()) --}}
         <div class="row my-3">
             <div class="col">
                 <ul class="list-group">
@@ -38,6 +38,12 @@
                                     <i class="fas fa-check"></i>
                                 </span>
                             @endif
+
+                            {{-- <form metod="POST" action="{{ route('tasks.destroy', [$task->id]) }}">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"><i class="fas fa-times"></i></button>
+                            </form> --}}
                         </li>
                     @endforeach
                     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -53,5 +59,5 @@
                 </ul>
             </div>
         </div>
-    @endif
+    {{-- @endif --}}
 @stop

@@ -1,17 +1,8 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Services\Twitter;
 
-Route::get('/', function () {
+Route::get('/', function (Twitter $twitter) {
     return view('welcome');
 });
 
@@ -32,3 +23,9 @@ Route::resource('projects', 'ProjectsController');
 Route::patch('/tasks/{task}', 'TasksController@update')->name('tasks.update');
 
 Route::post('/project/{project}/tasks', 'TasksController@store')->name('tasks.store');
+
+Route::delete('/tasks/{task}', 'TasksController@destroy')->name('tasks.destroy');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

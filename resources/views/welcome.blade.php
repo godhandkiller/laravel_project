@@ -81,7 +81,12 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    @if (auth()->check())
+                        <span class="badge badge-danger">{{ auth()->user()->username }}</span>
+                    @else
+                        Laravel
+                    @endif
+
                 </div>
 
                 <div class="links">

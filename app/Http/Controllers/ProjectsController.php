@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Project;
 
 use Illuminate\Http\Request;
+use Illuminate\Filesystem\Filesystem;
 
 class ProjectsController extends Controller{
 
@@ -52,7 +53,6 @@ class ProjectsController extends Controller{
     }
 
     public function destroy(Project $project) {
-        dd('entro');
         $project->delete();
 
         return redirect()->route('projects.index');
