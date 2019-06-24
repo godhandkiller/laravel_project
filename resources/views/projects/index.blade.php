@@ -28,7 +28,7 @@
                 <td class="text-center">
                     <a href="{{ route('projects.show', [$project->id]) }}"><i class="far fa-eye"></i></a>
                     <a href="{{ route('projects.edit', [$project->id]) }}"><i class="far fa-edit"></i></a>
-                    <a href="{{ route('projects.destroy', [$project->id]) }}"><i class="fas fa-minus-circle"></i></a>
+                    <a href="{{ route('projects.delete', [$project->id]) }}"><i class="fas fa-minus-circle"></i></a>
                 </td>
             </tr>
             @endforeach

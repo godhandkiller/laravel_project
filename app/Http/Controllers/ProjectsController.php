@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 
 use App\Project;
+use App\Mail\ProjectCreated;
 
 use Illuminate\Http\Request;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Mail;
 
 class ProjectsController extends Controller{
 
@@ -16,9 +18,14 @@ class ProjectsController extends Controller{
 
     public function index() {
 
-        $projects = Project::where('id_user', auth()->id())->get();
+        // $projects = Project::where('id_user', auth()->id())->get();
+        // $projects = auth()->user()->projects;
+        // return view('projects.index', compact('projects'));
+        // return view('projects.index', compact('projects'));
 
-        return view('projects.index', compact('projects'));
+        return view('projects.index', [
+            'projects' => auth()->user()->projects
+        ]);
     }
 
     public function show(Project $project) {
@@ -40,14 +47,15 @@ class ProjectsController extends Controller{
 
     public function store() {
 
-        $attributes = request()->validate([
-            'title'         => ['required', 'min:3', 'max:100'],
-            'description'   => ['required', 'min:3']
-        ]);
+        $attributes = $this->validateProject();
 
         $attributes['id_user'] = auth()->id();
 
-        Project::create($attributes);
+        $project = Project::create($attributes);
+
+        Mail::to(auth()->user()->email)->send(
+            new ProjectCreated($project)
+        );
 
         return redirect()->route('projects.index');
     }
@@ -56,12 +64,11 @@ class ProjectsController extends Controller{
         return view('projects.edit', compact('project'));
     }
 
-    public function update(Project $project) {;
+    public function update(Project $project) {
 
-        $project->update([
-            'title'         => request('title'),
-            'description'   => request('description')
-        ]);
+        $attributes = $this->validateProject();
+
+        $project->update($attributes);
 
         return redirect()->route('projects.index');
 
@@ -71,6 +78,13 @@ class ProjectsController extends Controller{
         $project->delete();
 
         return redirect()->route('projects.index');
+    }
+
+    public function validateProject() {
+        return request()->validate([
+            'title'         => ['required', 'min:3', 'max:100'],
+            'description'   => ['required', 'min:3']
+        ]);
     }
 
     //ejemplo en la terminal - php artisan migrate

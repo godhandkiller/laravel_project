@@ -11,23 +11,22 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
-        'username', 'email', 'password',
+        'username',
+        'email',
+        'password',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
+
+    public function projects() {
+        //el segundo parametro es la llave foranea, por default es el nombre de la tabla _id
+        //como yo le cambie de nombre se tiene que hacer referencia de como se llama
+        return $this->hasMany(Project::class, 'id_user');
+    }
 
     public function owns(Project $project) {
         return $this->id == $project->id;

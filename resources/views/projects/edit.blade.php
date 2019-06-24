@@ -21,18 +21,24 @@
             </div>
         </div>
         <div class="form-row">
-            <div class="col-2 form-group">
+            <div class="col-12 form-group">
                 <button type="submit" class="btn btn-primary">Update</button>
+                <a class="btn btn-danger" href="{{route('projects.delete', ['id' => $project->id ])}}">Delete</a>
             </div>
         </div>
     </form>
-    <form method="POST" action="{{ route('projects.destroy', ['id' => $project->id]) }}">
-        {{ method_field('DELETE') }}
-        {{ csrf_field() }}
-        <div class="form-row">
-            <div class="col-2 form-group">
-                <button type="submit" class="btn btn-light">Delete</button>
+
+    @if ($errors->any())
+        <div class="row">
+            <div class="col">
+                <div class="alert alert-danger" role="alert">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
         </div>
-    </form>
+    @endif
 @stop

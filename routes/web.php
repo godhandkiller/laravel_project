@@ -15,7 +15,7 @@ Route::resource('projects', 'ProjectsController');
 // Route::post('/projects', 'ProjectsController@store')->name('projects.store');
 // Route::get('/projects/{project}/edit', 'ProjectsController@edit')->name('projects.edit');
 // Route::patch('/projects/{project}', 'ProjectsController@update')->name('projects.update');
-// Route::delete('/projects/{project}', 'ProjectsController@destroy')->name('projects.destroy');
+Route::get('/projects/{project}/delete', 'ProjectsController@destroy')->name('projects.delete');
 
 // Route::patch('/tasks/{task}', 'TasksController@update')->name('task.update');
 

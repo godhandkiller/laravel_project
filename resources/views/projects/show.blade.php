@@ -53,7 +53,6 @@
                                 <input class="form-control {{ $errors->has('body')? 'is-invalid':''}}" type="text" name="body" placeholder="Add task" autocomplete="off">
                                 <button class="btn btn-primary btn-round my-auto ml-2" type="submit"><i class="fas fa-plus"></i></button>
                             </div>
-
                         </form>
                     </li>
                 </ul>
